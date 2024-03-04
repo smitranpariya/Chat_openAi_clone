@@ -1,11 +1,20 @@
-SendButton.addEventListner("click", ()=>{
-    alert("hey! you clicked")
+async function postData(url = "", data = {}){
+    const response = await fetch(url,{
+        method:"POST",headers:{
+            "content-Type":"application/json",
+        }, body: JSON.stringify(data),
+    });
+    return response.json();
+}
+sendButton.addEventListener("click", async() => {
     questionInput = document.getElementById("questionInput").value;
-    question = document.getElementById("question").value;
-    document.getElementById("question").value = "";
-    document.querySelector(".right2").style.display = "block"
-    document.querySelector(".right1").style.display = "none"
+    document.getElementById("questionInput").value = "hello";
+    document.querySelector(".right2").style.display = "block";
+    document.querySelector(".right1").style.display = "none";
 
     question1.innerHTML = questionInput;
     question2.innerHTML = questionInput;
-})
+
+    let result = await postData("/api",{"question":questionInput})
+    solution.innerHTML = result.result
+});

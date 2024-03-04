@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, jsonify,redirect, render_template, request, session, url_for
 
 app = Flask(__name__)
 
@@ -6,9 +6,14 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
-@app.route("/api")
+@app.route("/api", methods = ["GET", "POST"])
 def qa():
-    return render_template("qa.html")
+    if request.method == "POST":
+        question = request.json.get("question")
+        print(request.json)
+        data = {"result":question}
+        return jsonify(data)
+    
 
 app.run(debug=True)
 

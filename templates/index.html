@@ -75,7 +75,7 @@
                         class="bg-gray-600 w-[13vw] text-sm hover:bg-gray-700 py-4 px-4 mx-4  my-2 rounded-md">"Explain
                         quantum computing in simple terms" →</button>
                     <button class="bg-gray-600 w-[13vw] text-sm hover:bg-gray-700 py-4 px-4 mx-4  my-2 rounded-md">"Got
-                        any creative ideas for a 10 year old’s birthday?" →</button>
+                        any creative ideas for a 10 year old's birthday?" →</button>
                     <button class="bg-gray-600 w-[13vw] text-sm hover:bg-gray-700 py-4 px-4 mx-4  my-2 rounded-md">"How
                         do I make an HTTP request in Javascript?" →</button>
                 </div>
@@ -120,8 +120,7 @@
 
             <div class="input w-full text-center my-24 flex items-center justify-center flex-col">
                 <div class="buttonsvg pl-16 w-[50vw] flex">
-                    <input class="w-full p-4 bg-gray-600 rounded-md" placeholder="Send a Message" type="text"
-                        name="text" id="questionInput">
+                    <input class="w-full p-4 bg-gray-600 rounded-md" placeholder="Send a Message" type="text" name="text" id="questionInput">
 
                     <button id="sendButton" class="relative -left-20 pl-10">
                         <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
@@ -179,7 +178,7 @@
         </div>
 
     </div>
-    <script src="/static/js/script.js"></script>
+    <script src="{{ url_for('static',filename='js/script.js') }}"></script>
 </body>
 
 </html>
