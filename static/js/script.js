@@ -1,4 +1,4 @@
-async function postData(url = "", data = {}){
+async function postData(url = "/api", data = {}){
     const response = await fetch(url,{
         method:"POST",headers:{
             "content-Type":"application/json",

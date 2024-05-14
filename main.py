@@ -15,7 +15,6 @@ mongo = PyMongo(app)
 def home():
     chats = mongo.db.chats.find({})
     myChats = [chat for chat in chats]
-    print(myChats)
     return render_template("index.html", myChats=myChats)
 
 @app.route("/api", methods=["GET", "POST"])
@@ -26,8 +25,17 @@ def qa():
         chat = mongo.db.chats.find_one({"question": question})
         print(chat)
         if chat:
-            data = {"result": f"{chat['answer']}"}
-            return jsonify(data)
+            response = openai.completions.create(
+                   model="gpt-3.5-turbo-instruct",
+                   prompt=question,
+                   temperature=1,
+                   max_tokens=256,
+                   top_p=1,
+                   frequency_penalty=0,
+                   presence_penalty=0
+            )
+            data = response.choices[0].text
+            return data
         else:
             data = {"question": question, "answer": f"answer of this {question}"}
             mongo.db.chats.insert_one({"question": question, "answer": f"answer of this {question}"})
